@@ -13,12 +13,20 @@ distribution's package management software will help with this. Once
 you're done, run /android/, select and install the latest API
 revision (17 as of this document).
 
-You will need Java 1.6, dex is unhappy with 1.7. Running
+You will need Java 1.6 or Java 1.7. If compiled with the default options
+under Java 1.7, dex will issue lots of warning. To avoid these warnings when
+using Java 1.7, when you configure kawa, use:
+
+    JAVACFLAGS="-source 1.6 -target 1.6" ./configure --with-android ....
+
+Alternatively you can install Java 1.6 on your system instead of 1.7, although
+that is getting increasingly difficult as 1.6 is officially deprecated. Running
 #+BEGIN_SRC sh
 javac -version
 #+END_SRC
-should yield something that starts with 1.6, if not you're going to
-have to use your distribution's package manager to switch to Java 1.6.
+will tell you which Java version you have installed. It should be 1.6 or 1.7.
+If 1.7 you either need to downgrad to 1.6 or use the source and target options
+described above to avoid the warnings.
 
 To get started with Scheme you'll need a custom build for Kawa, this
 will fetch and build the latest sources
@@ -164,8 +172,12 @@ repetitive code much nicer. One day these and other code will make
 their way into a standard library for Android Kawa.
 ** Troubleshooting the build system
 *** bad magic bits with dex
-You've somehow managed to install with 1.7. Delete your old install
-entirely, downgrade to 1.6 and reinstall.
+You've compiled with Java 1.7 without using the proper source and
+target settings; make sure you use something like this to target
+1.6 when you build kawa:
+
+    JAVACFLAGS="-source 1.6 -target 1.6" ./configure --with-android ....
+
 *** make-and-send fails
 If you see
 #+BEGIN_SRC
