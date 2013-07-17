@@ -17,7 +17,9 @@ You will need Java 1.6 or Java 1.7. If compiled with the default options
 under Java 1.7, dex will issue lots of warning. To avoid these warnings when
 using Java 1.7, when you configure kawa, use:
 
-    JAVACFLAGS="-source 1.6 -target 1.6" ./configure --with-android ....
+#+BEGIN_SRC sh
+JAVACFLAGS="-source 1.6 -target 1.6" ./configure --with-android ....
+#+END_SRC
 
 Alternatively you can install Java 1.6 on your system instead of 1.7, although
 that is getting increasingly difficult as 1.6 is officially deprecated. Running
@@ -173,10 +175,12 @@ their way into a standard library for Android Kawa.
 ** Troubleshooting the build system
 *** bad magic bits with dex
 You've compiled with Java 1.7 without using the proper source and
-target settings; make sure you use something like this to target
-1.6 when you build kawa:
+target settings; make sure you use something like this to target 1.6
+when you build kawa:
 
-    JAVACFLAGS="-source 1.6 -target 1.6" ./configure --with-android ....
+#+BEGIN_SRC sh
+JAVACFLAGS="-source 1.6 -target 1.6" ./configure --with-android ....
+#+END_SRC
 
 *** make-and-send fails
 If you see
